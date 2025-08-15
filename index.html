@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lers Plus</title>
+
+  <!-- Meta / Social -->
+  <meta name="description" content="كل روابط Lers Plus في مكان واحد." />
+  <meta property="og:title" content="Lers Plus" />
+  <meta property="og:description" content="كل روابط Lers Plus في مكان واحد." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="preview.png" />
+  <meta name="theme-color" content="#7c3aed" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg1: #0f1021;
+      --bg2: #1b1c3a;
+      --card: rgba(255,255,255,0.06);
+      --card-stroke: rgba(255,255,255,0.12);
+      --text: #e9e9ee;
+      --muted: #b8b8c7;
+      --accent: #7c3aed; /* يمكن تغييره من المبدّل */
+      --radius-xl: 20px;
+      --radius-md: 12px;
+      --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-2: 0 6px 20px rgba(124, 58, 237, .35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Tajawal", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(124,58,237,.35), transparent 60%),
+                  radial-gradient(1000px 600px at 120% 10%, rgba(34,197,94,.25), transparent 50%),
+                  linear-gradient(120deg, var(--bg1), var(--bg2));
+      background-attachment: fixed;
+    }
+
+    /* subtle animated particles */
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.08) 0, transparent 50%),
+        radial-gradient(2px 2px at 80% 20%, rgba(255,255,255,.06) 0, transparent 50%),
+        radial-gradient(2px 2px at 60% 80%, rgba(255,255,255,.05) 0, transparent 50%);
+      animation: twinkle 6s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: .6; filter: blur(0px); }
+      to   { opacity: 1; filter: blur(0.3px); }
+    }
+
+    .wrap {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 28px 16px 40px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 740px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--card-stroke);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-1);
+      backdrop-filter: blur(12px) saturate(120%);
+      -webkit-backdrop-filter: blur(12px) saturate(120%);
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero {
+      position: relative;
+      padding: 28px 24px 18px;
+    }
+    .banner {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 160px;
+      background:
+        radial-gradient(600px 200px at 10% 10%, rgba(124,58,237,.4), transparent 60%),
+        radial-gradient(600px 200px at 90% 0%, rgba(34,197,94,.35), transparent 60%);
+      filter: blur(20px);
+      opacity: .9;
+      z-index: -1;
+    }
+
+    .avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 28%;
+      border: 2px solid rgba(255,255,255,.6);
+      box-shadow: var(--shadow-2);
+      background: #111;
+      object-fit: cover;
+    }
+
+    .head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .title {
+      margin: 0;
+      font-size: clamp(22px, 4.5vw, 32px);
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .badge {
+      padding: 6px 10px;
+      background: rgba(124,58,237,.12);
+      border: 1px solid rgba(124,58,237,.3);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .links {
+      display: grid;
+      gap: 12px;
+      padding: 12px 16px 20px;
+    }
+    .link {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--card-stroke);
+      background: rgba(255,255,255,.04);
+      text-decoration: none;
+      color: var(--text);
+      transition: transform .12s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+      will-change: transform;
+    }
+    .link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.35);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow-2);
+    }
+    .link:active { transform: translateY(0); }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      border: 1px solid var(--card-stroke);
+      font-size: 22px;
+    }
+
+    .link h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .link p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cta {
+      padding: 10px 12px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: 1px solid var(--card-stroke);
+      background: rgba(255,255,255,.04);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cta:hover { border-color: rgba(255,255,255,.35); }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+      border-top: 1px dashed var(--card-stroke);
+      color: var(--muted);
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .color {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.6);
+      background: var(--accent);
+      cursor: pointer;
+      position: relative;
+    }
+    .theme-toggle {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--card-stroke);
+      background: rgba(255,255,255,.04);
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* light mode */
+    .light {
+      --bg1: #f4f6fb;
+      --bg2: #e8ecf7;
+      --card: rgba(255,255,255,0.8);
+      --card-stroke: rgba(0,0,0,0.08);
+      --text: #0f1021;
+      --muted: #4b4f67;
+    }
+
+    /* responsive tweaks */
+    @media (max-width: 520px) {
+      .head { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+      .links { padding: 4px 12px 14px; }
+      .hero { padding: 22px 14px 12px; }
+      .footer { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkles" aria-hidden="true"></div>
+  <div class="wrap">
+    <main class="card" role="main">
+      <div class="hero">
+        <div class="banner" aria-hidden="true"></div>
+        <div class="head">
+          <img class="avatar" src="avatar.jpg" alt="الشعار أو الصورة الشخصية" />
+          <div>
+            <h1 class="title">Lers Plus</h1>
+            <p class="subtitle">
+              كل روابطنا الرسمية في صفحة واحدة. تابع آخر التحديثات، حمل التطبيقات، وتواصل معنا مباشرة ✨
+            </p>
+            <div class="badges">
+              <span class="badge">موثّق</span>
+              <span class="badge">تحديثات مستمرة</span>
+              <span class="badge">دعم سريع</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="links" aria-label="القائمة">
+        <!-- مثال للأزرار (حدّث الروابط والنصوص حسب رغبتك) -->
+        <a class="link" href="https://t.me/lers-plus" target="_blank" rel="noopener">
+          <div class="icon">💬</div>
+          <div>
+            <h3>قناتنا على تيليجرام</h3>
+            <p>أخبار، تحديثات</p>
+          </div>
+          <button class="cta">زيارة</button>
+        </a>
+
+        <a class="link" href="https://x.com/YourHandle" target="_blank" rel="noopener">
+          <div class="icon">𝕏</div>
+          <div>
+            <h3>حساب X (تويتر)</h3>
+            <p>تغريدات، إعلانات وملاحظات مهمة</p>
+          </div>
+          <button class="cta">متابعة</button>
+        </a>
+
+        <a class="link" href="https://youtube.com/@YourChannel" target="_blank" rel="noopener">
+          <div class="icon">▶️</div>
+          <div>
+            <h3>يوتيوب</h3>
+            <p>شروحات وعروض سريعة</p>
+          </div>
+          <button class="cta">مشاهدة</button>
+        </a>
+
+        <a class="link" href="https://your-website.example" target="_blank" rel="noopener">
+          <div class="icon">🌐</div>
+          <div>
+            <h3>الموقع الرسمي</h3>
+            <p>تحميل التطبيقات والوثائق</p>
+          </div>
+          <button class="cta">دخول</button>
+        </a>
+
+        <a class="link" href="mailto:contact@domain.com" target="_blank" rel="noopener">
+          <div class="icon">✉️</div>
+          <div>
+            <h3>التواصل عبر البريد</h3>
+            <p>للشراكات، الدعم والاستفسارات</p>
+          </div>
+          <button class="cta">إرسال</button>
+        </a>
+      </section>
+
+      <footer class="footer">
+        <div class="row">
+          <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">وضع نهاري / ليلي</button>
+          <div class="color" id="colorPicker" title="تغيير اللون"></div>
+        </div>
+        <div class="row">
+          <button class="cta" id="copyUrl">نسخ رابط الصفحة</button>
+          <span id="copiedMsg" style="display:none;">✔ تم النسخ</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+    // Persist theme
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') document.body.classList.add('light');
+
+    // Accent color picker (click to cycle through a few curated colors)
+    const picker = document.getElementById('colorPicker');
+    const palette = ['#7c3aed', '#22c55e', '#06b6d4', '#e11d48', '#f59e0b'];
+    let index = Number(localStorage.getItem('accentIndex') || 0);
+    const setAccent = () => {
+      document.documentElement.style.setProperty('--accent', palette[index]);
+      picker.style.background = palette[index];
+      localStorage.setItem('accentIndex', index);
+    };
+    picker.addEventListener('click', () => {
+      index = (index + 1) % palette.length;
+      setAccent();
+    });
+    setAccent();
+
+    // Copy page URL
+    const copyBtn = document.getElementById('copyUrl');
+    const copied = document.getElementById('copiedMsg');
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        copied.style.display = 'inline';
+        setTimeout(() => copied.style.display = 'none', 1800);
+      } catch(e) {
+        alert('لم يتم النسخ تلقائياً — انسخ الرابط يدوياً.');
+      }
+    });
+
+    // Tiny hover ripple (progressively enhanced)
+    document.querySelectorAll('.link').forEach(link => {
+      link.addEventListener('mousemove', e => {
+        const rect = link.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        link.style.setProperty('--mx', x + 'px');
+        link.style.setProperty('--my', y + 'px');
+      });
+      link.addEventListener('mouseenter', () => {
+        link.style.background = `radial-gradient(350px circle at var(--mx) var(--my), rgba(255,255,255,.12), transparent 60%)`;
+      });
+      link.addEventListener('mouseleave', () => {
+        link.style.background = 'rgba(255,255,255,.04)';
+      });
+    });
+  </script>
+</body>
+</html>
