@@ -36,7 +36,7 @@
             background-color: var(--primary-color);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden; /* Prevents horizontal scroll */
+            overflow-x: hidden;
         }
 
         h1, h2, h3 {
@@ -152,7 +152,7 @@
 
         /* --- Main Content Sections --- */
         main {
-            padding-top: 80px; /* Offset for fixed header */
+            padding-top: 80px;
         }
         section {
             padding: 80px 0;
@@ -240,11 +240,185 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 10px;
+            position: relative;
+            overflow: hidden;
         }
+
+        /* --- CSS Logos --- */
+        .logo-analyzer {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+        .logo-analyzer div {
+            width: 18px;
+            background: linear-gradient(to top, var(--accent-color), #4cd4b8);
+            border-radius: 2px 2px 0 0;
+            animation: grow 1.5s ease-in-out infinite alternate;
+        }
+        .logo-analyzer div:nth-child(1) { height: 40%; animation-delay: 0s; }
+        .logo-analyzer div:nth-child(2) { height: 70%; animation-delay: 0.2s; }
+        .logo-analyzer div:nth-child(3) { height: 50%; animation-delay: 0.4s; }
+        .logo-analyzer div:nth-child(4) { height: 80%; animation-delay: 0.6s; }
+        @keyframes grow { to { height: 100%; } }
+
+        .logo-taskmanager {
+            width: 100px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .logo-taskmanager div {
+            height: 12px;
+            background-color: var(--text-secondary);
+            border-radius: 6px;
+            position: relative;
+        }
+        .logo-taskmanager div:nth-child(2) {
+            background-color: var(--accent-color);
+            width: 75%;
+        }
+        .logo-taskmanager div::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--text-secondary);
+            border-radius: 50%;
+        }
+        .logo-taskmanager div:nth-child(2)::after {
+            background-color: var(--primary-color);
+        }
+
+        .logo-security {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 80px solid var(--accent-color);
+            position: relative;
+        }
+        .logo-security::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid var(--primary-color);
+        }
+
+        .logo-webdev {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+        .logo-webdev::before, .logo-webdev::after {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        .logo-webdev::before { top: 25%; }
+        .logo-webdev::after { bottom: 25%; }
+
+        .logo-ios {
+            width: 70px;
+            height: 120px;
+            background-color: var(--text-secondary);
+            border-radius: 35px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-ios::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+        }
+        .logo-ios::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .logo-android {
+            width: 80px;
+            height: 90px;
+            background-color: var(--accent-color);
+            border-radius: 40% 40% 50% 50%;
+            position: relative;
+        }
+        .logo-android::before, .logo-android::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+        .logo-android::before { left: 15px; }
+        .logo-android::after { right: 15px; }
+        
+        .logo-other {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+        .logo-other div {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+        .logo-other div:nth-child(1) { top: 0; left: 30px; }
+        .logo-other div:nth-child(2) { top: 30px; left: 0; }
+        .logo-other div:nth-child(3) { top: 30px; right: 0; }
+        .logo-other div:nth-child(4) { bottom: 0; left: 30px; }
+        .logo-other::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--accent-color);
+            border-radius: 50%;
+        }
+
+
         .card h3 {
             margin-bottom: 0.5rem;
         }
@@ -411,7 +585,7 @@
 
         /* --- Legal & Docs Pages --- */
         .page-content {
-            display: none; /* Hidden by default */
+            display: none;
             padding: 100px 0 50px 0;
             min-height: 100vh;
         }
@@ -546,7 +720,9 @@
                     <!-- Product 1 -->
                     <div class="card">
                         <div class="card-image-placeholder">
-                            [صورة احترافية: واجهة برنامج "محلل البيانات" تعرض رسومًا بيانية ديناميكية على شاشة لابتوب حديث]
+                            <div class="logo-analyzer">
+                                <div></div><div></div><div></div><div></div>
+                            </div>
                         </div>
                         <h3>محلل البيانات الذكي</h3>
                         <p>أداة قوية لتحليل بيانات عملك وإنشاء تقارير تفاعلية في دقائق. اتخذ قرارات مستنيرة بناءً على رؤى حقيقية.</p>
@@ -560,7 +736,9 @@
                     <!-- Product 2 -->
                     <div class="card">
                         <div class="card-image-placeholder">
-                            [صورة احترافية: واجهة تطبيق "مدير المهام" تعرض قائمة مهام منظمة على هاتف ذكي مع إشعارات]
+                            <div class="logo-taskmanager">
+                                <div></div><div></div><div></div>
+                            </div>
                         </div>
                         <h3>مدير المهام التلقائي</h3>
                         <p>نظام ذكي لأتمتة المهام الروتينية وتنظيم مشاريعك بفعالية. زد من تركيزك على ما يهم حقًا.</p>
@@ -574,7 +752,7 @@
                     <!-- Product 3 -->
                     <div class="card">
                         <div class="card-image-placeholder">
-                            [صورة احترافية: درع رقمي متقدم يحيط بخادمات، يرمز للحماية القوية والأمن السيبراني]
+                            <div class="logo-security"></div>
                         </div>
                         <h3>حماية متقدمة للمواقع</h3>
                         <p>خدمة سحابية لحماية موقعك من الهجمات الإلكترونية ومنع الاختراقات. احمِ سمعتك وعملائك.</p>
@@ -595,8 +773,8 @@
                 <div class="services-grid">
                     <!-- Service 1 -->
                     <div class="card" style="background-color: var(--primary-color);">
-                        <div class="card-image-placeholder">
-                            [صورة احترافية: لقطة شاشة لكود HTML/CSS واجهة موقع ويب حديثة وجذابة]
+                        <div class="card-image-placeholder" style="background-color: var(--secondary-color);">
+                            <div class="logo-webdev">&lt;/&gt;</div>
                         </div>
                         <h3>تطوير مواقع</h3>
                         <p>نصمم ونبرمج مواقع ويب احترافية وسريعة ومتجاوبة مع جميع الأجهزة باستخدام أحدث التقنيات.</p>
@@ -604,8 +782,8 @@
                     </div>
                     <!-- Service 2 -->
                     <div class="card" style="background-color: var(--primary-color);">
-                        <div class="card-image-placeholder">
-                            [صورة احترافية: هاتف iPhone يعرض واجهة تطبيق أصلية (Native) مصممة بأناقة ووظائف سلسة]
+                        <div class="card-image-placeholder" style="background-color: var(--secondary-color);">
+                            <div class="logo-ios"></div>
                         </div>
                         <h3>برمجة تطبيقات iOS</h3>
                         <p>نحول رؤيتك إلى تطبيق أصلي وسلس لأجهزة iPhone و iPad، مع التركيز على تجربة المستخدم.</p>
@@ -613,8 +791,8 @@
                     </div>
                     <!-- Service 3 -->
                     <div class="card" style="background-color: var(--primary-color);">
-                        <div class="card-image-placeholder">
-                            [صورة احترافية: هاتف أندرويد يعرض واجهة تطبيق متوافقة مع Material Design، تبدو حديثة ومرنة]
+                        <div class="card-image-placeholder" style="background-color: var(--secondary-color);">
+                            <div class="logo-android"></div>
                         </div>
                         <h3>برمجة تطبيقات Android</h3>
                         <p>نطور تطبيقات أصلية وقوية لنظام Android، تصل إلى ملايين المستخدمين عبر متجر Google Play.</p>
@@ -622,8 +800,10 @@
                     </div>
                     <!-- Service 4 -->
                     <div class="card" style="background-color: var(--primary-color);">
-                        <div class="card-image-placeholder">
-                            [صورة احترافية: رسم بياني يوضح تكامل واجهة برمجية (API) بين أنظمة برمجية مختلفة]
+                        <div class="card-image-placeholder" style="background-color: var(--secondary-color);">
+                            <div class="logo-other">
+                                <div></div><div></div><div></div><div></div>
+                            </div>
                         </div>
                         <h3>خدمات برمجية أخرى</h3>
                         <p>حلول مخصصة، واجهات برمجية (APIs)، تحليلات بيانات، واستشارات تقنية لتلبية أي متطلب برمجي.</p>
