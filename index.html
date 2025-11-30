@@ -3,82 +3,905 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LERS PLUS | حلولك البرمجية المتكاملة</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Lers plus - حلول برمجية مبتكرة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #172a45;
+            --accent-color: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --text-light: #ffffff;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Tajawal', sans-serif;
+            --border-radius: 8px;
+            --shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--primary-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevents horizontal scroll */
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--text-light);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #a8ffdc;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Utility Classes --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+        }
+
+        /* --- Header & Navbar --- */
+        .main-header {
+            background-color: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+        
+        .cart-icon-wrapper {
+            position: relative;
+            cursor: pointer;
+        }
+        .cart-icon {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+        .cart-icon-wrapper:hover .cart-icon {
+            color: var(--text-light);
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .cart-count.visible {
+            opacity: 1;
+        }
+
+        /* --- Main Content Sections --- */
+        main {
+            padding-top: 80px; /* Offset for fixed header */
+        }
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #112240 100%);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            border: 2px solid var(--accent-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            background: none;
+            color: var(--accent-color);
+        }
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* --- Products & Services Grid --- */
+        .products-grid, .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .card {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #2a3f5f;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        .card-image-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color: #233554;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 10px;
+        }
+        .card h3 {
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Cart Sidebar --- */
+        #cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: 100%;
+            width: 400px;
+            max-width: 90%;
+            height: 100vh;
+            background-color: var(--secondary-color);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            z-index: 2000;
+            transition: left 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        #cart-sidebar.open {
+            left: 0;
+        }
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a3f5f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-header h2 {
+            font-size: 1.5rem;
+        }
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+        .cart-item-details h4 {
+            margin-bottom: 0.25rem;
+        }
+        .cart-item-details p {
+            color: var(--accent-color);
+        }
+        .remove-item {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #2a3f5f;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .checkout-btn:hover {
+            background-color: #4cd4b8;
+        }
+        
+        /* --- Checkout Modal --- */
+        #checkout-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        #checkout-modal-overlay.open {
+            display: flex;
+        }
+        #checkout-modal {
+            background-color: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            border: 1px solid #2a3f5f;
+            border-radius: var(--border-radius);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* --- Legal & Docs Pages --- */
+        .page-content {
+            display: none; /* Hidden by default */
+            padding: 100px 0 50px 0;
+            min-height: 100vh;
+        }
+        .page-content.active {
+            display: block;
+        }
+        .page-content h1 {
+            margin-bottom: 2rem;
+        }
+        .page-content h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        .page-content p, .page-content li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .page-content ul {
+            list-style: none;
+            padding-right: 20px;
+        }
+        .page-content ul li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .back-to-home {
+            margin-top: 2rem;
+            display: inline-block;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--secondary-color);
+            padding: 3rem 0 1rem 0;
+            text-align: center;
+            border-top: 1px solid #2a3f5f;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-bottom {
+            border-top: 1px solid #2a3f5f;
+            padding-top: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .license-info {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .products-grid, .services-grid {
+                grid-template-columns: 1fr;
+            }
+            #cart-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="header-main">
-        <div class="container">
-            <a href="index.html" class="logo">متجر البرمجيات</a>
-            <nav class="nav-links">
-                <ul>
-                    <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="products.html">المنتجات</a></li>
-                    <li><a href="services.html">الخدمات</a></li>
-                    <li><a href="cart.html">العربة (0)</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header class="main-header">
+        <nav class="navbar container">
+            <a href="#" class="logo" onclick="showPage('home')">Lers<span>+</span></a>
+            <ul class="nav-links">
+                <li><a href="#products" onclick="showPage('home')">المنتجات</a></li>
+                <li><a href="#services" onclick="showPage('home')">الخدمات</a></li>
+                <li><a href="#contact" onclick="showPage('home')">تواصل معنا</a></li>
+                <li><a href="#" onclick="showPage('docs')">وثائقنا</a></li>
+                <li class="cart-icon-wrapper" onclick="toggleCart()">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cart-count">0</span>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>أهلاً بك في عالمي البرمجي</h1>
-            <p>أنا [اسمك], مطور برمجيات متخصص في تقديم حلول مبتكرة ومنتجات عالية الجودة تساعدك على نجاح مشروعك.</p>
-            <a href="#products" class="btn">استكشف منتجاتنا</a>
-        </section>
-
-        <!-- About Me Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2>من أنا</h2>
-                <p style="text-align: center; max-width: 800px; margin: auto;">
-                    مع أكثر من [عدد] سنوات من الخبرة في مجال تطوير البرمجيات، أقدم مجموعة واسعة من الخدمات التي تبدأ من تصميم وتطوير المواقع الإلكترونية الحديثة، وصولًا إلى بناء تطبيقات الجوال (iOS و Android) التي تقدم تجربة مستخدم استثنائية. شغفي هو تحويل الأفكار إلى واقع رقمي فعال.
-                </p>
-            </div>
-        </section>
-
-        <!-- Featured Services Section -->
-        <section id="services" class="section">
-            <div class="container">
-                <h2>خدماتي المميزة</h2>
-                <div class="products-grid"> <!-- نستخدم نفس الـ Grid للتنظيم -->
-                    <div class="product-card">
-                        <div class="content">
-                            <h3>تطوير مواقع الويب</h3>
-                            <p>مواقع تفاعلية وسريعة ومتجاوبة مع جميع الأجهزة.</p>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="content">
-                            <h3>برمجة تطبيقات iOS</h3>
-                            <p>تطبيقات أصلية لأجهزة iPhone و iPad بأعلى معايير الأداء.</p>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="content">
-                            <h3>برمجة تطبيقات Android</h3>
-                            <p>تطبيقات احترافية تعمل على ملايين الأجهزة حول العالم.</p>
-                        </div>
+        <!-- Home Page Content -->
+        <div id="home-page" class="page-content active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <h1>حلول برمجية مبتكرة لتسريع أعمالك</h1>
+                    <p>منتجات وخدمات مصممة بدقة لتلبية احتياجاتك الرقمية وتحقيق أهدافك بكفاءة عالية.</p>
+                    <div class="btn-group">
+                        <a href="#products" class="btn btn-primary">استكشف المنتجات</a>
+                        <a href="#services" class="btn btn-secondary">اطلب خدمة</a>
                     </div>
                 </div>
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="services.html" class="btn">اطلع على كل الخدمات</a>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="container">
+                <h2 class="section-title">منتجاتنا البرمجية</h2>
+                <p class="section-subtitle">أدوات قوية وجاهزة للاستخدام لتحسين إنتاجيتك.</p>
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="card">
+                        <div class="card-image-placeholder">
+                            [صورة احترافية: واجهة برنامج "محلل البيانات" تعرض رسومًا بيانية ديناميكية على شاشة لابتوب حديث]
+                        </div>
+                        <h3>محلل البيانات الذكي</h3>
+                        <p>أداة قوية لتحليل بيانات عملك وإنشاء تقارير تفاعلية في دقائق. اتخذ قرارات مستنيرة بناءً على رؤى حقيقية.</p>
+                        <div class="price">$199</div>
+                        <button class="btn btn-primary add-to-cart" 
+                                data-name="محلل البيانات الذكي" 
+                                data-price="199">
+                            أضف للسلة
+                        </button>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="card">
+                        <div class="card-image-placeholder">
+                            [صورة احترافية: واجهة تطبيق "مدير المهام" تعرض قائمة مهام منظمة على هاتف ذكي مع إشعارات]
+                        </div>
+                        <h3>مدير المهام التلقائي</h3>
+                        <p>نظام ذكي لأتمتة المهام الروتينية وتنظيم مشاريعك بفعالية. زد من تركيزك على ما يهم حقًا.</p>
+                        <div class="price">$149</div>
+                        <button class="btn btn-primary add-to-cart" 
+                                data-name="مدير المهام التلقائي" 
+                                data-price="149">
+                            أضف للسلة
+                        </button>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="card">
+                        <div class="card-image-placeholder">
+                            [صورة احترافية: درع رقمي متقدم يحيط بخادمات، يرمز للحماية القوية والأمن السيبراني]
+                        </div>
+                        <h3>حماية متقدمة للمواقع</h3>
+                        <p>خدمة سحابية لحماية موقعك من الهجمات الإلكترونية ومنع الاختراقات. احمِ سمعتك وعملائك.</p>
+                        <div class="price">$99 / سنوياً</div>
+                        <button class="btn btn-primary add-to-cart" 
+                                data-name="حماية متقدمة للمواقع" 
+                                data-price="99">
+                            أضف للسلة
+                        </button>
+                    </div>
                 </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="container" style="background-color: var(--secondary-color); border-radius: var(--border-radius); margin-top: 2rem;">
+                <h2 class="section-title">خدماتنا التطويرية</h2>
+                <p class="section-subtitle">فريق من الخبراء لتحويل فكرتك إلى واقع رقمي.</p>
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="card" style="background-color: var(--primary-color);">
+                        <div class="card-image-placeholder">
+                            [صورة احترافية: لقطة شاشة لكود HTML/CSS واجهة موقع ويب حديثة وجذابة]
+                        </div>
+                        <h3>تطوير مواقع</h3>
+                        <p>نصمم ونبرمج مواقع ويب احترافية وسريعة ومتجاوبة مع جميع الأجهزة باستخدام أحدث التقنيات.</p>
+                        <a href="#contact" class="btn btn-secondary" style="width: 100%; text-align: center;">اطلب عرض سعر</a>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="card" style="background-color: var(--primary-color);">
+                        <div class="card-image-placeholder">
+                            [صورة احترافية: هاتف iPhone يعرض واجهة تطبيق أصلية (Native) مصممة بأناقة ووظائف سلسة]
+                        </div>
+                        <h3>برمجة تطبيقات iOS</h3>
+                        <p>نحول رؤيتك إلى تطبيق أصلي وسلس لأجهزة iPhone و iPad، مع التركيز على تجربة المستخدم.</p>
+                        <a href="#contact" class="btn btn-secondary" style="width: 100%; text-align: center;">اطلب عرض سعر</a>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="card" style="background-color: var(--primary-color);">
+                        <div class="card-image-placeholder">
+                            [صورة احترافية: هاتف أندرويد يعرض واجهة تطبيق متوافقة مع Material Design، تبدو حديثة ومرنة]
+                        </div>
+                        <h3>برمجة تطبيقات Android</h3>
+                        <p>نطور تطبيقات أصلية وقوية لنظام Android، تصل إلى ملايين المستخدمين عبر متجر Google Play.</p>
+                        <a href="#contact" class="btn btn-secondary" style="width: 100%; text-align: center;">اطلب عرض سعر</a>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="card" style="background-color: var(--primary-color);">
+                        <div class="card-image-placeholder">
+                            [صورة احترافية: رسم بياني يوضح تكامل واجهة برمجية (API) بين أنظمة برمجية مختلفة]
+                        </div>
+                        <h3>خدمات برمجية أخرى</h3>
+                        <p>حلول مخصصة، واجهات برمجية (APIs)، تحليلات بيانات، واستشارات تقنية لتلبية أي متطلب برمجي.</p>
+                        <a href="#contact" class="btn btn-secondary" style="width: 100%; text-align: center;">اطلب عرض سعر</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Terms & Conditions Page -->
+        <div id="terms-page" class="page-content">
+            <div class="container">
+                <h1>الشروط والأحكام</h1>
+                <p>مرحبًا بك في Lers plus. يرجى قراءة هذه الشروط والأحكام بعناية قبل استخدام موقعنا أو شراء أي من منتجاتنا أو خدماتنا. باستخدامك للموقع، فإنك توافق على الالتزام بهذه الشروط.</p>
+
+                <h2>1. قبول الشروط</h2>
+                <p>يشير استخدامك لموقع Lers plus الإلكتروني إلى موافقتك الكاملة والالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على هذه الشروط، يرجى الامتناع عن استخدام موقعنا.</p>
+
+                <h2>2. وصف الخدمة</h2>
+                <p>تقدم Lers plus منتجات برمجية جاهزة وخدمات تطوير مخصصة. نلتزم بتقديم وصف دقيق وواضح لكل منتج وخدمة. نحتفظ بالحق في تعديل أو تحديث المنتجات والخدمات وأسعارها في أي وقت دون إشعار مسبق.</p>
+
+                <h2>3. حقوق الملكية الفكرية</h2>
+                <p>جميع المحتويات المتوفرة على هذا الموقع، بما في ذلك على سبيل المثال لا الحصر: النصوص، الرسوم البيانية، الشعارات، الصور، ومقاطع الفيديو، هي ملكية لـ Lers plus ومحمية بموجب قوانين حقوق النشر والعلامات التجارية. يُحظر نسخ أو توزيع أو إعادة استخدام أي محتوى دون الحصول على موافقة كتابية مسبقة منا.</p>
+
+                <h2>4. الدفع والتجديد</h2>
+                <p>يتم التعامل مع جميع المدفوعات من خلال بوابات دفع إلكترونية آمنة ومعتمدة. الأسعار المعروضة هي بالدولار الأمريكي أو العملة المحددة. المنتجات التي تتطلب اشتراكًا سنويًا سيتم تجديدها تلقائيًا ما لم يتم إلغاء الاشتراك قبل تاريخ التجديد.</p>
+
+                <h2>5. سياسة الاسترجاع</h2>
+                <p>بما أن منتجاتنا هي منتجات رقمية، فإننا لا نقدم استردادًا للمدفوعات بعد تنزيل المنتج أو تفعيل الخدمة. نحن نشجع المستخدمين على مراجعة وصف المنتج بعناية قبل الشراء. في حال وجود خلل فني في المنتج، نلتزم بتقديم الدعم الفني اللازم لإصلاحه.</p>
+
+                <h2>6. الخصوصية</h2>
+                <p>نحن نحترم خصوصيتك. يتم جمع واستخدام بياناتك وفقًا لسياسة الخصوصية المنشورة على موقعنا. نلتزم بحماية بياناتك الشخصية وعدم مشاركتها مع أطراف ثالثة دون موافقتك، باستثناء ما يتطلبه القانون.</p>
+
+                <h2>7. حدود المسؤولية</h2>
+                <p>لا تكون Lers plus مسؤولة عن أي أضرار مباشرة أو غير مباشرة أو تبعية تنشأ عن استخدامك أو عدم قدرتك على استخدام موقعنا أو المنتجات والخدمات المقدمة من خلاله.</p>
+
+                <h2>8. القانون الحاكم</h2>
+                <p>تخضع هذه الشروط والأحكام وتفسر بموجب قوانين المملكة العربية السعودية. أي نزاع ينشأ عن هذه الشروط سيتم حله بواسطة المحاكم المختصة في المملكة العربية السعودية.</p>
+
+                <h2>9. معلومات التواصل</h2>
+                <p>إذا كان لديك أي أسئلة حول هذه الشروط والأحكام، يرجى التواصل معنا عبر:</p>
+                <ul>
+                    <li>البريد الإلكتروني: info@lers-plus.com</li>
+                    <li>رقم الجوال: +966507262268</li>
+                </ul>
+                <a href="#" class="btn btn-secondary back-to-home" onclick="showPage('home')">العودة للرئيسية</a>
             </div>
-        </section>
+        </div>
+
+        <!-- Documentation Page -->
+        <div id="docs-page" class="page-content">
+            <div class="container">
+                <h1>مركز الوثائق والدعم</h1>
+                <p>مرحبًا بك في مركز وثائق Lers plus. هنا ستجد كل ما تحتاجه للبدء في استخدام منتجاتنا والاستفادة القصوى من خدماتنا. إذا لم تجد إجابة لسؤالك، فلا تتردد في التواصل مع فريق الدعم الفني.</p>
+
+                <h2>قسم المنتجات البرمجية</h2>
+                <ul>
+                    <li><a href="#">دليل التثبيت والإعداد السريع لـ "محلل البيانات الذكي"</a></li>
+                    <li><a href="#">كيفية ربط مصادر البيانات المختلفة في "محلل البيانات الذكي"</a></li>
+                    <li><a href="#">أسئلة شائعة حول "مدير المهام التلقائي"</a></li>
+                    <li><a href="#">دليل تكامل "حماية متقدمة للمواقع" مع موقعك الحالي</a></li>
+                </ul>
+
+                <h2>قسم الخدمات التطويرية</h2>
+                <ul>
+                    <li><a href="#">كيفية بدء مشروع تطوير موقع جديد معنا (مراحل العمل)</a></li>
+                    <li><a href="#">قائمة المعلومات والمواد المطلوبة لبدء مشروع تطبيق موبايل</a></li>
+                    <li><a href="#">فهم عروض الأسعار وعقود مشاريع التطوير</a></li>
+                </ul>
+
+                <h2>قسم الدعم الفني والفواتير</h2>
+                <ul>
+                    <li><a href="#">طرق التواصل مع فريق الدعم الفني</a></li>
+                    <li><a href="#">زمن الاستجابة المتوقع للطلبات المختلفة</a></li>
+                    <li><a href="#">كيفية الحصول على فاتورة رسمية للمدفوعات</a></li>
+                </ul>
+                
+                <a href="#" class="btn btn-secondary back-to-home" onclick="showPage('home')">العودة للرئيسية</a>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="footer-main">
+    <footer id="contact" class="main-footer">
         <div class="container">
-            <p>&copy; 2024 متجر البرمجيات. جميع الحقوق محفوظة.</p>
-            <p></p>صُمم بـ ❤️ بواسطة LERS PLUS</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Lers plus</h4>
+                    <p>شريكك الرقمي نحو النجاح.</p>
+                    <div class="license-info">
+                        <p>سجل عمل حر: FL-650565044</p>
+                        <p>صادر من وزارة التجارة السعودية</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#products" onclick="showPage('home')">المنتجات</a></li>
+                        <li><a href="#services" onclick="showPage('home')">الخدمات</a></li>
+                        <li><a href="#" onclick="showPage('docs')">وثائقنا</a></li>
+                        <li><a href="#" onclick="showPage('terms')">الشروط والأحكام</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li>البريد: info@lers-plus.com</li>
+                        <li>الجوال: +966507262268</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lers plus. جميع الحقوق محفوظة.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar">
+        <div class="cart-header">
+            <h2>سلة التسوق</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>المجموع:</span>
+                <span id="cart-total">0$</span>
+            </div>
+            <button class="checkout-btn" onclick="proceedToCheckout()">إكمال عملية الشراء</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal-overlay">
+        <div id="checkout-modal">
+            <button class="close-modal" onclick="closeCheckoutModal()">&times;</button>
+            <h2>بيانات الدفع</h2>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact">البريد الإلكتروني أو رقم الجوال</label>
+                    <input type="text" id="contact" name="contact" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">إكمال الدفع</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- State Management ---
+        let cart = [];
+
+        // --- DOM Elements ---
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        const cartCountElement = document.getElementById('cart-count');
+        const checkoutModalOverlay = document.getElementById('checkout-modal-overlay');
+        const checkoutForm = document.getElementById('checkout-form');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const pages = {
+            home: document.getElementById('home-page'),
+            terms: document.getElementById('terms-page'),
+            docs: document.getElementById('docs-page')
+        };
+
+        // --- Event Listeners ---
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.dataset.name;
+                const price = parseFloat(button.dataset.price);
+                addToCart(name, price);
+            });
+        });
+
+        checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+            
+            // This is the stopping point as requested.
+            alert(`شكرًا لك ${name}!\n\nتم استلام بياناتك بنجاح.\nسيتم توجيهك قريبًا إلى بوابة الدفع الآمنة لإتمام عملية الشراء بمبلغ ${cartTotalElement.textContent}.`);
+            
+            // In a real application, you would now send this data to your backend
+            // to initiate the payment process with Stripe or another gateway.
+            
+            // Reset cart and close modal
+            cart = [];
+            updateCartUI();
+            closeCheckoutModal();
+        });
+
+        // --- Functions ---
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let itemCount = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">السلة فارغة</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    itemCount += item.quantity;
+                    const cartItemDiv = document.createElement('div');
+                    cartItemDiv.className = 'cart-item';
+                    cartItemDiv.innerHTML = `
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <p>${item.price}$ × ${item.quantity}</p>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${index})">حذف</button>
+                    `;
+                    cartItemsContainer.appendChild(cartItemDiv);
+                });
+            }
+
+            cartTotalElement.textContent = `${total}$`;
+            cartCountElement.textContent = itemCount;
+            cartCountElement.classList.toggle('visible', itemCount > 0);
+        }
+
+        function toggleCart() {
+            cartSidebar.classList.toggle('open');
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('سلة التسوق فارغة!');
+                return;
+            }
+            toggleCart(); // Close cart
+            checkoutModalOverlay.classList.add('open');
+        }
+
+        function closeCheckoutModal() {
+            checkoutModalOverlay.classList.remove('open');
+            checkoutForm.reset();
+        }
+        
+        function showPage(pageName) {
+            // Hide all pages
+            Object.values(pages).forEach(page => page.classList.remove('active'));
+            // Show the selected page
+            if (pages[pageName]) {
+                pages[pageName].classList.add('active');
+            }
+            // Close cart and modal if open
+            cartSidebar.classList.remove('open');
+            closeCheckoutModal();
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        updateCartUI();
+    </script>
 </body>
 </html>
